@@ -1,0 +1,103 @@
+\section{Preliminaries}
+\label{sec:preliminaries}
+Introduces terms used in your topic by definitions. Furthermore, it 
+can introduce theorems on which parts of your topic base. Hint: Use 
+paragraphs to structure your text. This is the first paragraph.
+
+And this is the second paragraph. By the way: Do not use 
+abbreviations as don't, it's, or can't. In Figure~\ref{fig:graph} 
+you can see an example of a picture embedded in a figure. The
+picture is created using the TikZ-Library (cf. 
+\href{../manuals/tikzpgfmanual.pdf}{TikZ-Manual}). In Table
+\ref{tab:nameOfTheTable} you can see an example for a table.
+
+\begin{definition}[Name of the term]
+\label{def:nameOfTerm}
+This is how you define a term.
+\end{definition}
+
+\begin{theorem}[Name of the theorem]
+\label{the:nameOfTheorem}
+This is how you write a theorem. Do not forget to prove the theorem.
+\begin{proof}
+	Here you write the proof of the theorem.
+\end{proof}
+\end{theorem}
+
+\begin{figure}[htb] % where to insert the figure: h=here, t=top, b=bottom,
+					% the order htb shows which position is preffered
+	\begin{center}
+		\begin{tabular}{cc}
+			\begin{minipage}{0.35\linewidth} % minipages are a nice
+											 % equipment to arrange
+											 % pictures
+				\begin{center}
+					\input{pictures/directedGraph.tex}
+				\end{center}
+			\end{minipage}
+			&
+			\begin{minipage}{0.55\linewidth} % note that the total
+											 % width of the mini
+											 % pages is less than
+											 % 1.0\linewidth, since
+											 % otherwise you get a
+											 % badbox (try it yourself)
+				\begin{center}
+					\input{pictures/directedTree.tex}
+				\end{center}
+			\end{minipage}
+		\end{tabular}
+	\end{center}
+	\caption{A digraph on the left and a directed tree on the right.}
+	\label{fig:graph}
+\end{figure}
+
+In the next lines you can see some examples formulas and other
+constructs, which are useful in the math mode. A very useful webpage
+to find symbols and the packages to include is 
+\href{http://detexify.kirelabs.org/classify.html}{Detexify$^2$}.
+$\Sigma, \sigma, \ldots, \varphi, \xi$, \LaTeX
+You can use the math mode in the text, e.g. $1\neq0$, or write it in
+a whole line:
+$$\left|
+	\begin{array}{ccc}
+		a_{1,1} & \ldots & a_{1,n}  \\
+				& \vdots & 			\\
+		a_{n,1} & \ldots & a_{n,n}
+	\end{array}
+\right|
+\quad = \quad 
+\left\{
+	\begin{array}{ll}
+			{\displaystyle \sum\limits_{\sigma\in S_n}} 
+			% displaystyle avoids that symbols size get adjusted
+			\left(
+				\text{sgn}(\sigma)
+				\prod\limits_{i=1}^{n}a_{i,\sigma(i)}
+			\right) 
+			& 
+			\text{, if }True 
+		\\[0.6cm] % adjust the line spacing
+			{\displaystyle\frac{42}{1}} & \text{, otherwise}
+	\end{array}
+\right.$$
+
+
+\begin{table}[htb]
+	\caption{This a a table.}
+	\label{tab:nameOfTheTable}
+	\bigskip % Insert a vertical space. Also \smallskip or \medskip.
+	\begin{center}
+		\begin{tabular}{|l||l|c|r|}
+			\hline
+			& align left 	& centered & align right \\
+			\hline \hline
+			row $1$ & box $1.1$ & box $1.2$ & box $1.3$ \\
+			\hline
+			row $2$ & \multicolumn{2}{c|}{box $2.1$} & box $2.2$ \\
+			\hline
+			row $2$ & \multicolumn{3}{c|}{box $2$} \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
