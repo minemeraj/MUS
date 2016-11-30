@@ -1,0 +1,16 @@
+\section{preliminaries}
+\label{sec:background}
+\subsection{Virtual Substitution}
+	In 1993, the concept of Virtual Substitution (VS) was first introduced. Initially it was a procedure to eliminate quantifier/variable elimination for linear real arithmetic formulas. Further, VS became a procedure of quantifier elimination for non-linear arithmetic formulas. But one of the most significant limitation of VS is that it cannot eliminate quantified variables whose degree is higher than 2.
+	
+	VS is a procedure to eliminate a quantified variable. Let $\varphi^\mathbb{R}$ is a quantifier-free real-arithmetic formula where $x\in p(x)$ and $p(x) \sim 0, \sim \in \{=,<,>,\leq,\geq,\neq\}$ is a constraint of   $\varphi^\mathbb{R}$. Degree of x in $p(x)$ must be $\leq$ 2. Then, after quantifier elimination by VS we get the following equivalence,
+	$$ \exists x. \varphi^\mathbb{R} \Longleftrightarrow \bigvee\limits_{t\in T(x,\varphi^\mathbb{R})}  (\varphi^\mathbb{R} [t\backslash\backslash x] \wedge C_t)$$
+	
+	Where T is a finite set of all possible test candidates for x and $C_t$ is a side condition of $t \in T$.
+\subsection{Test Candidates and Side Condition}
+	To solve non-linear equalities with VS first we have to choose a variable, $x\in p(x)$ to eliminate and then compute all possible test candidates. $\varphi^\mathbb{R}$ is satisfied if there is a test candidate $t\in T$ such that $\varphi^\mathbb{R} [t\backslash\backslash x] = p_1[t\backslash\backslash x] \wedge \cdots p_n[t\backslash\backslash x] \wedge C_t$ is satisfiable.
+	
+	So, the indices of the substitutions are the side conditions of the test candidate it considers and the labels on the edges to a substitutions are the constraints which provide test candidate. A detailed explanation of how to construct test candidates with side condition is provided in the section 3.1.
+\subsection{Test Candidates and Side Condition}
+	
+	

@@ -1,0 +1,26 @@
+\begin{figure}[htb]
+	\definecolor{qqqqff}{rgb}{0.3333333333333333,0.3333333333333333,0.3333333333333333}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.4761919114360773cm,y=1.63093968966294cm]
+	\draw[->,color=black] (-2.7324952460752647,0.) -- (3.325193550469059,0.);
+	\foreach \x in {-2.5,-2.,-1.5,-1.,-0.5,0.5,1.,1.5,2.,2.5,3.}
+	\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt);
+	\draw[->,color=black] (0.,-2.117196753448055) -- (0.,0.948520533150894);
+	\foreach \y in {-2.,-1.5,-1.,-0.5,0.5}
+	\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt);
+	\clip(-2.7324952460752647,-2.117196753448055) rectangle (3.325193550469059,0.948520533150894);
+	\draw[line width=1.2pt,color=qqqqff,smooth,samples=100,domain=-2.7324952460752647:3.325193550469059] plot(\x,{(\x)^(2.0)-2.0});
+	\begin{scriptsize}
+	\draw[color=black] (-1.3523957115582101,0.5613552057195835) node {$y^{2}-2$};
+	\draw [fill=black] (-1.4142135623730951,0.) circle (1.5pt);
+	\draw[color=black] (-1.605238374370495,0.1294156567485976) node {-$\sqrt{2}$};
+	\draw [fill=black] (1.4142135623730951,0.) circle (1.5pt);
+	\draw[color=black] (1.3287900253470601,0.11888054579808574) node {$\sqrt{2}$};
+	\draw [fill=black] (-1.3313254896571864,0.) circle (1.5pt);
+	\draw[color=black] (-1.1838339363500203,0.12414810127334167) node {$-\sqrt{2} + \epsilon$};
+	\draw [fill=black] (1.5,0.) circle (1.5pt);
+	\draw[color=black] (1.6185055764861365,0.1294156567485976) node {$\sqrt{2} + \epsilon$};
+	\end{scriptsize}
+	\end{tikzpicture}
+	\caption{Substitution of Infinitesimal Expressions in $y^{2}-2<0$}
+	\label{fig:graph}
+\end{figure}

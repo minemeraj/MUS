@@ -1,0 +1,36 @@
+\section{Quantifier Elimination with the Virtual Substitution}
+\label{sec:quantifier-elimination-with-the-virtual-substitution}
+Let $\varphi^\mathbb{R}$ is a quantifier-free real-arithmetic formula where $x\in \varphi^\mathbb{R}$ and $x$ has at most degree $2$ in $\varphi^\mathbb{R}$. After eliminating existential and universal qualifier with virtual substitution we will get the following equivalences,
+\begin{alignat}{2}
+	&\exists x. \varphi^\mathbb{R} \Longleftrightarrow \bigvee\limits_{t\in T(x,\varphi^\mathbb{R})}  (\varphi^\mathbb{R} [t\backslash\backslash x] \wedge C_t)\qquad   \\
+	& \forall x. \varphi^\mathbb{R} \Longleftrightarrow \bigwedge\limits_{t\in T(x,\varphi^\mathbb{R})}  (C_{t}\rightarrow\varphi^\mathbb{R} [t\backslash\backslash x] )\qquad
+\end{alignat}
+
+Now, let us consider $\exists x.\varphi$ where, $\varphi = (x^{2}y + x + y = 0) \wedge (y^{2} -2 < 0)$. We already constructed all the test candidates for $x$ and $y$. Also we get to know about substitution rules with virtual substitution. By using the substitution rules, we eliminate all occurrences of $x$ and $y$ from $\varphi$. Then we get the following equivalence holds.
+$$ \exists x\exists y. \varphi \Longleftrightarrow \bigvee\limits_{t_{1}\in T(x,\varphi)}(\bigvee\limits_{t\in T(y,\varphi^{\prime})}  (\varphi^{\prime} [t_{2}\backslash\backslash y] \wedge C_{t_{2}}))$$
+where, $\varphi^{\prime} = (\varphi [t_{1}\backslash\backslash x] \wedge C_{t_{1}})$.
+\begin{center}
+	\input{ro_4.tex}
+\end{center}
+The solutions of $x$ and $y$ for $\varphi$ is shown in the figure 2 and 3. Also we can have an overview of virtual substitution though figure 4.
+\begin{figure}[htb] % where to insert the figure: h=here, t=top, b=bottom,
+	% the order htb shows which position is preffered
+	\begin{center}
+	\input{pictures/directedTree.tex}
+	\end{center}
+	\caption{Example of Virtual Substitution.}
+	\label{fig:graph}
+\end{figure}
+
+We get the proof of equation (4.1) which is explained on the above by an example. Equation (4.2) can be implied by equation (4.1) as follows.
+%C_{\sim}(\varphi^\mathbb{R})=C_{\sim}(\neg\varphi^\mathbb{R})
+\begin{alignat}{2}
+	& \forall x. \varphi^\mathbb{R}\qquad   
+	&&\stackrel{}{\Longleftrightarrow} \neg\exists x.\neg\varphi^\mathbb{R} \\
+	& 
+	&&\stackrel{4.1}{\Longleftrightarrow} \neg(\bigvee\limits_{t\in T(x,\varphi^\mathbb{R})}) \neg(\varphi^\mathbb{R} [t\backslash\backslash x] \wedge C_t) \\
+	& 
+	&&\stackrel{}{\Longleftrightarrow} \bigwedge\limits_{t\in T(x,\neg \varphi^\mathbb{R})} (\varphi^\mathbb{R} [t\backslash\backslash x] \vee\neg C_{t}) \\
+	& 
+	&&\stackrel{}{\Longleftrightarrow}  \bigwedge\limits_{t\in T(x, \varphi^\mathbb{R})} (C_{t} \rightarrow \varphi^\mathbb{R} [t\backslash\backslash x])
+\end{alignat}
