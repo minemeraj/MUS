@@ -1,15 +1,20 @@
 \documentclass{seminarpaper}
-\usepackage[framemethod=tikz]{mdframed}
 
+\let\endproof\relax
+\let\proof\relax
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{amsthm}
 \usepackage{multirow}
 \usepackage{pgf,tikz}
 \usepackage{marvosym}
 \usepackage{wasysym}
 \usetikzlibrary{arrows}
 
-\title{Topic \\ {\large Event}}
+
+\title{Computing Minimal Unsatisfiable Subsets of Constraints
+\\ {\large Seminar}}
 \date{WS 16/17}
-\author{Author: Aklima Zaman \\ Supervision: Erika \'{A}brah\'{a}m \\RWTH Aachen University, LuFG Informatik 2}
+\author{Author: Shahriar Robbani \\ Supervision: Erika \'{A}brah\'{a}m \\RWTH Aachen University, LuFG Informatik 2}
 
 \begin{document}
 \maketitle
@@ -18,7 +23,6 @@
 \input{introduction.tex}
 \input{preliminaries.tex}
 \input{topic.tex}
-\input{quantifier-elimination.tex}
 \input{conclusion.tex}
 
 \input{ref.tex}

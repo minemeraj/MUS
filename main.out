@@ -1,14 +1,13 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Preliminaries}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{CNF}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Conjunctive Normal Form}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Satisfiability Checking}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Clause-Selector Variables}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{Minimal Unsatisfiable Subset and Minimal Correction Subset }{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.5}{Hitting Sets}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.6}{MUS backSlashDiteHobe MCS Duality}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.6}{MUS "026E30F \040MCS Duality}{section.2}% 8
 \BOOKMARK [2][-]{subsection.2.7}{AtMost Constraints}{section.2}% 9
 \BOOKMARK [1][-]{section.3}{Algorithms for Computing Minimal Unsatisfiable Subset}{}% 10
 \BOOKMARK [2][-]{subsection.3.1}{Computing MCSes}{section.3}% 11
 \BOOKMARK [2][-]{subsection.3.2}{Compuitng MUSes}{section.3}% 12
-\BOOKMARK [1][-]{section.4}{Quantifier Elimination with the Virtual Substitution}{}% 13
-\BOOKMARK [1][-]{section.5}{Conclusion}{}% 14
+\BOOKMARK [1][-]{section.4}{Conclusion}{}% 13
