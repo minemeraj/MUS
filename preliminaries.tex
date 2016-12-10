@@ -15,17 +15,18 @@ here, $C_{i}$ is the $i^{\text th}$ clause and $n$ is the number of total clause
 \end{example}
 The aforementioned CNF formula will ne used as an example throughout this paper which is unsatisfiable.
 \subsection{Satisfiability Checking}
-Satisfiability checking determines whether the existentially quantified first-order-logic formulas are satisfiable by generating solutions automatically. The formulas are Boolean combinations of theory constraints and the form of theory constraints varies depending on with which theory we want to represent first-order-logic. Some example theory constraints from different theories are given in [2]. There are two types of solvers for satisfiability checking: $1)$ Boolean satisfiability (SAT) solver and $2)$ SAT-modulo-theories (SMT) solver.\newline
+Satisfiability checking determines whether the existentially quantified first-order-logic formulas are satisfiable by generating solutions automatically. The formulas are Boolean combinations of theory constraints and the form of theory constraints varies depending on with which theory we want to represent first-order-logic. Some example theory constraints from different theories are given in \cite{erika}. There are two types of solvers for satisfiability checking: $1)$ Boolean satisfiability (SAT) solver and $2)$ SAT-modulo-theories (SMT) solver.\newline
 A SAT solver solves the Boolean satisfiability problem (the problem of determining if there exists any satisfying soultion for a given Boolean formula) by implementing decision procedure. The Davis–Putnam–Logemann–Loveland (DPLL) algorithm is the basis for most modern SAT solvers. The input formula of it is expected to be in CNF.\newline
 Example: Let us consider a CNF, $(x) \wedge (\neg x\vee\neg y) \wedge (z)$. Boolean constraint propagation (BCP) (determines the assignment of next variable implied by the last decision) starts with $x$ as it is a single literal and $x$ is set to $true$. Then, BCP indicates that  $y$ of the second clause must be $false$ to satisfy the CNF. There is still a unassigned variables. A new decision will be made and $z$ is set to $true$. As all variables are assigned and there is no conflict, the satisfying soluiton is $x=1, y=0$ and $z=1$.\newline
-A SMT solver can be applied on quantifier-free first-order-logic formulas with an underlying theory to check the satisfiability. There are two type of SMT solvers, Eager SMT solver and Lazy SMT solver. To know about SMT solver in details you can read [3].
+A SMT solver can be applied on quantifier-free first-order-logic formulas with an underlying theory to check the satisfiability. There are two type of SMT solvers, Eager SMT solver and Lazy SMT solver. To know about SMT solver in details you can read \cite{kremer}.
 \subsection{Clause-Selector Variables}
-Authors of the paper [1] has used clause-selector variable by augmenting a CNF formula. Clause-selector variable is a variable, $w_{i}$ which is negated to augment each clause of $C_{i}$ of a CNF such that $C^{\prime}_{i}=(\neg w_{i})\vee C_{i}$ in a new formula $\varphi^{\prime}$. Notice that each $C^{\prime}_{i}$ is an implication, $C^{\prime}_{i}=(\neg w_{i}\rightarrow C_{i})$. It means if $w_{i}$ is set to $true$, the original clause $C_{i}$ is being enabled. Conversely, assigning $w_{i}$ $false$ means $C_{i}$ is being disabled or removed from the set of clauses, because $C^{\prime}_{i}$ is satisfied by the assignment of $w_{i}$. So, adding clause-selector variables provides the SAT solver the ability to enable and disable clauses as a part of its normal search.\newline
+Authors of the paper \cite{karem} has used clause-selector variable by augmenting a CNF formula. Clause-selector variable is a variable, $w_{i}$ which is negated to augment each clause of $C_{i}$ of a CNF such that $C^{\prime}_{i}=(\neg w_{i})\vee C_{i}$ in a new formula $\varphi^{\prime}$. Notice that each $C^{\prime}_{i}$ is an implication, $C^{\prime}_{i}=(\neg w_{i}\rightarrow C_{i})$. It means if $w_{i}$ is set to $true$, the original clause $C_{i}$ is being enabled. Conversely, assigning $w_{i}$ $false$ means $C_{i}$ is being disabled or removed from the set of clauses, because $C^{\prime}_{i}$ is satisfied by the assignment of $w_{i}$. So, adding clause-selector variables provides the SAT solver the ability to enable and disable clauses as a part of its normal search.\newline
 For our example formula $\varphi=(x)\wedge(\neg x)\wedge(\neg x\vee y)\wedge(\neg x \vee \neg y)$, after adding clause-selector variables we get the following augmented formula $\varphi^{\prime}$, 
 $$\varphi^{\prime}=(\neg w_{1}\vee x)\wedge(\neg w_{2}\vee \neg x)\wedge(\neg w_{3}\vee \neg x\vee y)\wedge(\neg w_{4}\vee \neg x \vee \neg y)$$
-\subsection{Minimal Unsatisfiable Subset and Minimal Correction Subset }
+\subsection{Minimal Unsatisfiable Subset and Minimal Correction Subset}
 An Unsatisfiable Subset (US) ia a subset of the clauses of an unsatisfiable CNF formula $\varphi$ where the conjunction of clauses is unsatisfiable. US is said to be Minimal Unsatisfiable Subset (MUS) if and only if removing any clause from UC makes it satisfiable. A Minimal Correction Subset (MCS) is a subset of the clauses of $\varphi$ whose removal from $\varphi$ make it satisfiable and which is minimal. A formula can have multiple MUSes and MCSes. For any formula $\varphi$, MUSes and MCSes of $\varphi$ can be represented as MUSes($\varphi$) and MCSes($\varphi$), respectively. The formal definitions of the set of MUSes and MCSes of $\varphi$ are given in the following:
-Defintion:
+\begin{definition}[MUS]
+	\label{def:mus}
 A subset $U$ be a MUS which is a subset of $\varphi$ if $U$ is unsatisfiable and for each clause $C_{i}$ containing in $U$, the removal of $C_{i}$ from $U$ is satisfiable.
 $$MUSes(\varphi)
 \quad = \quad 
@@ -38,7 +39,10 @@ $$MUSes(\varphi)
 {\displaystyle\forall C_{i} \varepsilon U} & \text{, U $\backslash \{C_{i}\}$ is satisfiable}
 \end{array}
 \right.$$
-Defintion: A subset $M$ be a MCS which is a subset of $\varphi$ if the removal of $M$ from $\varphi$ is satisfiable and for each clause $C_{i}$ containing in $M$ the removal of $M$ from $\varphi$ is unsatisfiable where $M$ does not have $C_{i}$.
+\end{definition}
+\begin{definition}[MCS]
+	\label{def:mcs}
+A subset $M$ be a MCS which is a subset of $\varphi$ if the removal of $M$ from $\varphi$ is satisfiable and for each clause $C_{i}$ containing in $M$ the removal of $M$ from $\varphi$ is unsatisfiable where $M$ does not have $C_{i}$.
 $$MUSes(\varphi)
 \quad = \quad 
 \left\{
@@ -50,6 +54,7 @@ $$MUSes(\varphi)
 {\displaystyle\forall C_{i} \varepsilon M} & \text{, $C\backslash(M\backslash\{C_{i}\})$ is unsatisfiable}
 \end{array}
 \right.$$
+\end{definition}
 For our example formula $\varphi=(x)\wedge(\neg x)\wedge(\neg x\vee y)\wedge(\neg x \vee \neg y)$, the MUSes and MCSes are shown in the Table $2.1$.
 \begin{table}[]
 	\centering
@@ -64,12 +69,12 @@ For our example formula $\varphi=(x)\wedge(\neg x)\wedge(\neg x\vee y)\wedge(\ne
 \subsection{Hitting Sets}
 Assume, $\Omega$ is a collection of sets of a finite set $D$. A hitting set of $\Omega$ is a subset of $D$ such that it contains at least one element from each subset in $\Omega$. Formally, the definition is given below:\newline
 Definition: A hitting set $H$ of $\Omega$ is $H\subseteq D$ such that $\forall S\in \Omega$, $H\cap S\neq 0$ where $S$ represents each subset of $\Omega$.\newline
-In the paper [1], authors refer to minimal hitting sets which are the hitting sets from which no elements cannot be removed and if at least one element is removed, it will not be a hitting set anymore.\newline
+In the paper \cite{karem}, authors refer to minimal hitting sets which are the hitting sets from which no elements cannot be removed and if at least one element is removed, it will not be a hitting set anymore.\newline
 \begin{example}
 Let us consider, $\Omega=\{\{a, b\}, \{b, c, d\}\}$. Then, $\{a,b\}, \{b,c,d\}, \{a,c,d\}, \{b\},\cdots$ are the hitting sets where, $\{b\}$ is the only minimal hitting set.	
 \end{example}
 \subsection{MUS $\backslash$ MCS Duality}
-There is a relationship between MUSes and MCSes which is the foundation of paper [1]. The relationship states that the set of MUSes of formula $\varphi$ is equal to the set of minimal and irreducible hitting sets of the set of MCSes and vice-versa. This is the duality of MUS and MCS. Formally, it can said that:
+There is a relationship between MUSes and MCSes which is the foundation of paper \cite{karem}. The relationship states that the set of MUSes of formula $\varphi$ is equal to the set of minimal and irreducible hitting sets of the set of MCSes and vice-versa. This is the duality of MUS and MCS. Formally, it can said that:
 \begin{enumerate}
 	\item A subset $U$ of $\varphi$ is an MUS if and only if $U$ is an irreducible hitting set of MCSes$(\varphi)$.
 	\item A subset $M$ of $\varphi$ is an MUS if and only if $M$ is an irreducible hitting set of MUSes$(\varphi)$.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2016.11.25)  8 DEC 2016 23:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2016.11.25)  10 DEC 2016 21:40
 entering extended mode
 **./main.tex
 (main.tex
@@ -1309,24 +1309,12 @@ File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
 \c@mdf@zref@counter=\count182
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amscls\amsthm.sty"
-Package: amsthm 2015/03/04 v2.20.2
-\thm@style=\toks43
-\thm@bodyfont=\toks44
-\thm@headfont=\toks45
-\thm@notefont=\toks46
-\thm@headpunct=\toks47
-\thm@preskip=\skip120
-\thm@postskip=\skip121
-\thm@headsep=\skip122
-\dth@everypar=\toks48
-)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
 Package: multirow 2016/10/11 v2.1 Span multiple rows of a table
-\multirow@colwidth=\skip123
+\multirow@colwidth=\skip120
 \multirow@cnta=\count183
 \multirow@cntb=\count184
-\multirow@dima=\skip124
+\multirow@dima=\skip121
 \bigstrutjot=\dimen272
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\marvosym\marvosym.sty"
@@ -1337,27 +1325,23 @@ Package: wasysym 2003/10/30 v2.0 Wasy-2 symbol support package
 \symwasy=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
-) (main.aux
-
-LaTeX Warning: Label `my-label' multiply defined.
-
-)
+) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1400,12 +1384,12 @@ LaTeX Font Info:    ... okay on input line 19.
 \scratchbox=\box87
 \nofMPsegments=\count186
 \nofMParguments=\count187
-\everyMPshowfont=\toks49
+\everyMPshowfont=\toks43
 \MPscratchCnt=\count188
 \MPscratchDim=\dimen274
 \MPnumerator=\count189
 \makeMPintoPDFobject=\count190
-\everyMPtoPDFconversion=\toks50
+\everyMPtoPDFconversion=\toks44
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1420,7 +1404,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box88
-Package hyperref Info: Link coloring OFF on input line 19.
+Package hyperref Info: Link coloring OFF on input line 17.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1430,9 +1414,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count191
 )
-LaTeX Info: Redefining \ref on input line 19.
-LaTeX Info: Redefining \pageref on input line 19.
-LaTeX Info: Redefining \nameref on input line 19.
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
 
 (main.out) (main.out)
 \@outlinefile=\write4
@@ -1440,17 +1424,17 @@ LaTeX Info: Redefining \nameref on input line 19.
 
  ABD: EveryShipout initializing macros
 \c@lstlisting=\count192
-LaTeX Font Info:    Try loading font information for U+msa on input line 21.
+LaTeX Font Info:    Try loading font information for U+msa on input line 19.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 21.
+LaTeX Font Info:    Try loading font information for U+msb on input line 19.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 21.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 19.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\wasysym\uwasy.fd"
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
@@ -1458,25 +1442,14 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 \c@example=\count193
  [1
 
-{C:/Users/eh5i0/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 9--11
-
- []
-
-[2]
+{C:/Users/eh5i0/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 54.
+               Default added (so using `tbp') on input line 59.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 65--68
-
- []
-
-
-Overfull \hbox (2.45721pt too wide) in paragraph at lines 69--70
-[][]\OT1/cmr/bx/n/10.95 Example 2. []\OT1/cmr/m/it/10.95 Let us con-sider, $\OT
-1/cmr/m/n/10.95 
+Overfull \hbox (1.83348pt too wide) in paragraph at lines 74--75
+[]\OT1/cmr/m/it/10.95 Let us con-sider, $\OT1/cmr/m/n/10.95 
  = \OMS/cmsy/m/n/10.95 ff\OML/cmm/m/it/10.95 a; b\OMS/cmsy/m/n/10.95 g\OML/cmm/
 m/it/10.95 ; \OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 b; c; d\OMS/cmsy/m/n/10.9
 5 gg$\OT1/cmr/m/it/10.95 . Then, $\OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 a; b
@@ -1486,34 +1459,31 @@ L/cmm/m/it/10.95 a; c; d\OMS/cmsy/m/n/10.95 g\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/
 n/10.95 f\OML/cmm/m/it/10.95 b\OMS/cmsy/m/n/10.95 g\OML/cmm/m/it/10.95 ; [] $
  []
 
+[3]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 71.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\delimiter' on input line 71.
+(hyperref)                removing `math shift' on input line 76.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 71.
+(hyperref)                removing `\delimiter' on input line 76.
 
-[3] (pictures/directedTree.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 76.
+
+(pictures/directedTree.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
 
 ) (topic.tex
 Package hyperref Info: bookmark level for unknown Algorithm defaults to 0 on in
 put line 6.
- [4]
-Underfull \hbox (badness 10000) in paragraph at lines 25--30
-
- []
-
-[5]
+ [4] [5]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 39.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
@@ -1521,44 +1491,39 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 52.
+               Default added (so using `tbp') on input line 50.
 
-
-Overfull \hbox (6.69495pt too wide) in paragraph at lines 67--99
+(pictures/overviewofalgoallmuses.tex)
+Overfull \hbox (6.69495pt too wide) in paragraph at lines 64--116
 \OT1/cmr/m/n/10.95 For ev-ery $[]$ a method, $[]$ (Al-go-rithm $3$) is called w
 ith $[]$,
  []
 
 [6] [7]
-Overfull \hbox (2.49854pt too wide) in paragraph at lines 100--101
-[][]\OT1/cmr/bx/n/10.95 Example 4. []\OT1/cmr/m/it/10.95 Let us con-sider, our 
-ex-am-ple for-mula $\OML/cmm/m/it/10.95 '$\OT1/cmr/m/it/10.95 . We al-ready hav
-e found $\OML/cmm/m/it/10.95 MCSes\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 '\OT1
-/cmr/m/n/10.95 ) =
+Overfull \hbox (1.8748pt too wide) in paragraph at lines 116--117
+[]\OT1/cmr/m/it/10.95 Let us con-sider, our ex-am-ple for-mula $\OML/cmm/m/it/1
+0.95 '$\OT1/cmr/m/it/10.95 . We al-ready have found $\OML/cmm/m/it/10.95 MCSes\
+OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 '\OT1/cmr/m/n/10.95 ) =
  []
 
-) (conclusion.tex) (ref.tex) [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 30.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 30.
+) (conclusion.tex) [8] (ref.tex) [9]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 28.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 28.
  (main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 30.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 30.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 28.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 28.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 34BEBF09DE67DE34F8AB877D0080EF58;904.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 30.
+(rerunfilecheck)             Checksum: 41B4F43C9F65FD4CE8011D3E92A1C0FA;903.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 28.
  ) 
 Here is how much of TeX's memory you used:
- 30154 strings out of 493333
- 589865 string characters out of 3136607
- 676037 words of memory out of 3000000
- 33156 multiletter control sequences out of 15000+200000
- 16419 words of font info for 61 fonts, out of 3000000 for 9000
+ 30225 strings out of 493333
+ 591017 string characters out of 3136607
+ 689148 words of memory out of 3000000
+ 33218 multiletter control sequences out of 15000+200000
+ 16587 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,14n,73p,10414b,720s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,14n,73p,10416b,814s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C
@@ -1576,10 +1541,11 @@ KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX
 .9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/
 fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
-/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (8 pages, 259673 bytes).
+/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/symbols/msam10.pfb>
+Output written on main.pdf (9 pages, 285539 bytes).
 PDF statistics:
- 189 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 500000)
+ 221 PDF objects out of 1000 (max. 8388607)
+ 45 named destinations out of 1000 (max. 500000)
  117 words of extra memory for PDF output out of 10000 (max. 10000000)
 
