@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2016.11.25)  11 DEC 2016 19:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2016.11.25)  11 DEC 2016 23:08
 entering extended mode
 **./main.tex
 (main.tex
@@ -1492,13 +1492,13 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 50.
 
 (pictures/overviewofalgoallmuses.tex)
-Overfull \hbox (6.69495pt too wide) in paragraph at lines 64--116
+Overfull \hbox (6.69495pt too wide) in paragraph at lines 64--117
 \OT1/cmr/m/n/10.95 For ev-ery $[]$ a method, $[]$ (Al-go-rithm $3$) is called w
 ith $[]$,
  []
 
 [7]
-Overfull \hbox (1.8748pt too wide) in paragraph at lines 116--117
+Overfull \hbox (1.8748pt too wide) in paragraph at lines 117--118
 []\OT1/cmr/m/it/10.95 Let us con-sider, our ex-am-ple for-mula $\OML/cmm/m/it/1
 0.95 '$\OT1/cmr/m/it/10.95 . We al-ready have found $\OML/cmm/m/it/10.95 MCSes\
 OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 '\OT1/cmr/m/n/10.95 ) =
@@ -1517,7 +1517,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 28.
 Here is how much of TeX's memory you used:
  30229 strings out of 493333
  591056 string characters out of 3136607
- 681978 words of memory out of 3000000
+ 681984 words of memory out of 3000000
  33218 multiletter control sequences out of 15000+200000
  16587 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1540,7 +1540,7 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2
 /fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
 s/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (10 pages, 281773 bytes).
+Output written on main.pdf (10 pages, 281804 bytes).
 PDF statistics:
  226 PDF objects out of 1000 (max. 8388607)
  49 named destinations out of 1000 (max. 500000)
