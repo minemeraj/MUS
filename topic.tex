@@ -1,8 +1,6 @@
-\section{Algorithms for Computing Minimal Unsatisfiable Subset}
+\section{Algorithms for Computing Minimal Unsatisfiable Subsets}
 \label{sec:algorithms for computing minimal unsatisfiable subset}
-The approach of computing all MUSes of $\varphi$ is to first find all MCSes($\varphi$) and then to compute all irreducible hitting sets of MCSes($\varphi$), which are all MUSes($\varphi$). So, there are two phases to generate all MUSes of a unsatisfiable CNF formula. The first phase is to compute MCSes by using an algorithm and the second phase is to compute MUSes from the MCSes by using a recursive algorithm which authors have developed to compute irreducible hitting sets.\newline
-In the first phase, authors use a SAT solver (produces an satisfying assignment, if exists) to work with the input given and generate hitting sets of MUSes (MCSes) without revealing the underlying MUSes. For the second phase, they get all the information with MCSes and use an recursive algorithm to compute minimal and irreducible hitting sets of MCSes (MUSes). 
-\begin{Algorithm}
+The approach of computing all MUSs of $\varphi$ is to first find all MCSes($\varphi$) and then to compute all minimal hitting sets of MCSs($\varphi$), which are all MUSes($\varphi$). So, there are two phases to generate all MUSes of an unsatisfiable CNF formula.\begin{Algorithm}
 	\caption{Algorithm for finding all MCSes of a formula $\varphi$}
 	\label{alg:findmcses}
 	\begin{algorithm}{\text{MCSes}}{\text{$\varphi$}}
@@ -22,49 +20,47 @@ In the first phase, authors use a SAT solver (produces an satisfying assignment,
 	\end{algorithm}
 \end{Algorithm}
 \subsection{Computing MCSes}
-In Algorithm $1$, there is a method named $\textbf{MCSes}$ which takes a CNF formula $\varphi$ as input. The goal of this is to find minimal set of clauses whose removal makes $\varphi$ satisfiable. In Line $1$, $\varphi$ is augmented with clause-selector variables by creating $\varphi^{\prime}$. The augmentation increases the number of variables. Also the search space grows for finding a satisfying assignment. Initially, the variable, $\textbf{\textit{MCSes}}$ is empty and  at the end we will get all MCSes in this variable. There is a counter variable, $K$ which is initialized by $1$.\newline
-Each iteration of the outer while loop (Lines $4$-$12$) finds an MCS of size $K$, which is incremented by $1$ after each iteration. In Line $5$, a clause is added of the form $AtMost(\{\neg w_{1},\neg w_{2},\ldots,\neg w_{n}\},k)$ to $\varphi^{\prime}$ and a new formula, $\varphi^{\prime}_{\text k}$ is created. $K$ number of variables, $w_{i}$ are assigned to $false$ so that $K$ number of clauses could be disabled. The set of variables, $w_{i}$ are assigned to $false$ by indicating the clauses as an MCS.\newline
-The inner while loop (Lines $6$-$10$) searches all the satisfiable assignments of $\varphi^{\prime}_{\text k}$ and also finds all MCSes of size $k$. In Line $6$, \textbf{IncrementalSAT} method is called which uses MiniSAT (a modern open-source SAT solver which has incremental solving ability) for finding a solution of $\varphi^{\prime}_{\text k}$. In this method the solving function is invoked multiple times, but each time with a different set of assumption literals and then the solver checks the satisfiability of all the clauses provided with the current assumptions only \cite{nadel}. Each satisfying assignment produces an MCS stored in a variable $\textbf{\textit{newMCS}}$ which contains the clauses having $w_{\text i}$ assigned $false$. Each $\textbf{\textit{newMCS}}$ is recorded in $\textbf{\textit{MCSes}}$ (Line $7$). In Line $8$ and $9$, a blocking clause is added to $\varphi^{\prime}_{k}$ and $\varphi^{\prime}$, respectively to block that solution. Blocking clause is a clause containing the clause-selector variables which consist in the clauses of that MCS. It means at least one of the clauses in the MCS will be enabled for future solution. For example, an MCS has the clauses $C_{2}$ and $C_{3}$ which means $w_{2}$ and $w_{3}$ are assigned false in satisfying assignment. Then the blocking clause will be $(w_{2}\vee w_{3})$. $True$ is assigned to at least one $w_{i}$ excluding the MCS and any of its supersets from any future solution.\newline
-All founded MCSes are irreducible as the MCSes were found in increasing size and all supersets are excluded form the future solutions. After evaluating all the solutions with bound $K$ enforces to find solutions with bound $K+1$. Also, $K+1$ disabled clause to be irreducible as potential subsets would have found and blocked.\newline
+Algorithm $1$ depicts that a method named $\textbf{MCSs}$ which takes a CNF formula $\varphi$ as input. This method finds all minimal correction sets whose removal makes $\varphi$ satisfiable. In Line $1$, $\varphi$ is augmented with clause-selector variables by creating $\varphi^{\prime}$. The augmentation increases the number of variables. Also the search space grows for finding a satisfying assignment. Initially, the variable $\textbf{\textit{MCSes}}$ is initialized to store the empty set and  at the end we will get all MCSs in this variable. There is a counter variable, $k$ which is initialized to $1$.\newline
+Each iteration of the outer while loop (Lines $4$-$12$) finds an MCS of size $k$, which is incremented by $1$ after each iteration. A clause is added of the form $AtMost(\{\neg w_{1},\neg w_{2},\ldots,\neg w_{n}\},k)$ to $\varphi^{\prime}$ and a new formula $\varphi^{\prime}_{k}$ is created. $k$ number of variables $w_{i}$ are assigned to $\mathbf{false}$ so that $k$ number of clauses could be disabled. The set of variables $w_{i}$ are assigned to $\mathbf{false}$ by indicating the clauses as an MCS.\newline
+The inner while loop (Lines $6$-$10$) searches all the satisfiable assignments of $\varphi^{\prime}_{\text k}$ and also finds all MCSs of size $k$. $\mathbf{IncrementalSAT}$ is an important part of this algorithm which is called to find satisfying assignment for $\varphi^{\prime}_{\text k}$. This method finds satisfying assignment by invoking the solving function multiple times, but each time with a different set of assumption literals and then the solver checks the satisfiability of all the clauses provided with the current assumptions only \cite{nadel}. Each satisfying assignment produces an MCS stored in a variable $\mathbf{newMCS}$ which contains the clauses having $w_{\text i}$ assigned $\mathbf{false}$. Each $\mathbf{newMCS}$ is recorded in $\mathbf{newMCSs}$. After that a blocking clause of $\mathbf{newMCS}$ is added to $\varphi^{\prime}_{k}$ and $\varphi^{\prime}$, respectively to block that solution. Blocking clause is a clause containing the clause-selector variables which consist in the clauses of an MCS. It means that at least one of the clauses in the MCS will be enabled for future solution. For example, an MCS has the clauses $C_{2}$ and $C_{3}$ which means $w_{2}$ and $w_{3}$ are assigned $\mathbf{false}$ in satisfying assignment. Then the blocking clause will be $(w_{2}\vee w_{3})$. To make this clause satisfiable, $\emph{true}$ is needed to assign to at least one of the $w_{i}$ variables which excludes the MCS and any of its supersets from any future solution.\newline
+All founded MCSs are $\emph{minimal}$ as the MCSs were found in increasing size and all supersets are excluded from the future solutions. After evaluating all the solutions with bound $k$ enforces to find solutions with bound $k+1$. Also, $k+1$ disabled clause to be irreducible as potential subsets would have found and blocked.\newline
 The outer while loop checks if $\varphi^{\prime}$ is still satisfiable without any bound on $w_{\text i}$. Note that, $\varphi^{\prime}$ is augmented with all  generated blocking clauses. Finding no satisfying assignments indicates that we have found all MCSes and there is no other way to remove clauses for satisfying formula. Finally, the algorithm terminates and returns all MCSes to caller.
 \begin{example}
-Let us consider, our example formula $\varphi=(x)\wedge(\neg x)\wedge(\neg x\vee y)\wedge(\neg x \vee \neg y)$. So, $\varphi^{\prime}=(\neg w_{1}\vee x)\wedge(\neg w_{2}\vee \neg x)\wedge(\neg w_{3}\vee \neg x\vee y)\wedge(\neg w_{4}\vee \neg x \vee \neg y)$. Initially, $MCSes=\emptyset$ and $k=1$.\newline
-In the first iteration, it will add an AtMost bound with $K=1$ by creating $\varphi^{\prime}_{1}=\varphi^{\prime} \wedge AtMost(\{l_{1},l_{2},l_{3},l_{4}\},1)$. At first $false$ is assigned to $w_{1}$ and the incremental solver find a solution for $\varphi^{\prime}_{\text k}$. Now, we get the followings:
-$$MCSes=\{C_{1}\}$$
+Let us consider our example formula $\varphi=(x)\wedge(\neg x)\wedge(\neg x\vee y)\wedge(\neg x \vee \neg y)$. So, $\varphi^{\prime}=(\neg w_{1}\vee x)\wedge(\neg w_{2}\vee \neg x)\wedge(\neg w_{3}\vee \neg x\vee y)\wedge(\neg w_{4}\vee \neg x \vee \neg y)$. Initially, $MCSes=\emptyset$ and $k=1$.\newline
+In the first iteration, it will add an AtMost bound with $k=1$ by creating $\varphi^{\prime}_{1}=\varphi^{\prime} \wedge AtMost(\{l_{1},l_{2},l_{3},l_{4}\},1)$. At first $false$ is assigned to $w_{1}$ and the incremental solver finds a solution for $\varphi^{\prime}_{k}$. Now, we get the followings:
+$$MCSs=\{C_{1}\}$$
 $$\varphi^{\prime}_{1}=\varphi^{\prime}_{1} \wedge w_{1}$$
 $$\varphi^{\prime}=\varphi^{\prime} \wedge w_{1}$$
-After adding the blocking clause, $(w_{1})$ the incremental solver will be unable to find any further solution with $K=1$. There is no other way to remove one clause to satisfy $\varphi$. It means no other single clause covers all of its MUSes. The inner while loop is exited.\newline
-As $\varphi^{\prime}$ is still satisfiable, the bound is incremented to 2 and the search for soluitons of $\varphi^{\prime}_{2}=\varphi^{\prime} \wedge AtMost(\{l_{1},l_{2},l_{3},l_{4}\},2)$ is continued.For $K=2$, we get the followings, respectively:
+After adding the blocking clause, $(w_{1})$ the incremental solver will be unable to find any further solution with $k=1$. There is no other way to remove one clause to satisfy $\varphi$. It means no other single clause covers all of its MUSes. The inner while loop is exited.\newline
+As $\varphi^{\prime}$ is still satisfiable, the bound is incremented to 2 and the search for soluitons of $\varphi^{\prime}_{2}=\varphi^{\prime} \wedge AtMost(\{l_{1},l_{2},l_{3},l_{4}\},2)$ is continued.For $k=2$, we get the followings, respectively:
 \begin{itemize}
 	\item $w_{2}=false$ and $w_{3}=false,$
-	$$MCSes=\{\{C_{1}\}, \{C_{2}, C_{3}\}\}$$
+	$$MCSs=\{\{C_{1}\}, \{C_{2}, C_{3}\}\}$$
 	$$\varphi^{\prime}_{2}=\varphi^{\prime}_{2} \wedge (w_{2}\vee w_{3})$$
 	$$\varphi^{\prime}=\varphi^{\prime} \wedge (w_{2}\vee w_{3})$$
 	\item $w_{2}=false$ and $w_{4}=false,$
-	$$MCSes=\{\{C_{1}\}, \{C_{2}, C_{3}\}, \{C_{2}, C_{4}\}\}$$
+	$$MCSs=\{\{C_{1}\}, \{C_{2}, C_{3}\}, \{C_{2}, C_{4}\}\}$$
 	$$\varphi^{\prime}_{2}=\varphi^{\prime}_{2} \wedge (w_{2}\vee w_{4})$$
 	$$\varphi^{\prime}=\varphi^{\prime} \wedge (w_{2}\vee w_{4})$$
 \end{itemize}
-We will not get any other MCSes for $K=2$. Also, the outer while loop will exit as $\varphi^{\prime}$ with all the added blocking clauses is no longer satisfiable. So, final MCSes are, $\{C_{1}\}, \{C_{2}, C_{3}\}$ and $\{C_{2}, C_{4}\}$.
+We will not get any other MCSes for $K=2$. Also, the outer while loop will exit as $\varphi^{\prime}$ with all the added blocking clauses is no longer satisfiable. So, final MCSs are, $\{C_{1}\}, \{C_{2}, C_{3}\}$ and $\{C_{2}, C_{4}\}$.
 \end{example}
 \begin{table}[]
 	\centering
-	\caption{Running MCSes($\varphi$) on our example formula $\varphi$}
+	\caption{Running MCSs($\varphi$) on our example formula $\varphi$}
 	\label{running-mCSes}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		\begin{tabular}[c]{@{}l@{}}Step\\ No.\end{tabular} &                & $k$                  & $\varphi^{\prime}$ & MCSes \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Step\\ No.\end{tabular} &                & $k$                  & $\varphi^{\prime}$ & MCSs \\ \hline
 		1                                                  & Initialization & \multirow{2}{*}{1} & $(x)\wedge (\neq x)\wedge (\neq x \vee y)\wedge (\neq x \vee \neq y) $ & $\emptyset$     \\ \cline{1-2} \cline{4-5} 
 		2                                                  & Run1           &                    & $\varphi^{\prime}(step1)\wedge w_{1}$ & $\{C_{1}\}$     \\ \hline
 		3                                                  & Run2           & \multirow{2}{*}{2} & $\varphi^{\prime}(step2)\wedge (w_{2}\vee w_{3})$ & $\{C_{2}, C_{3}\}$     \\ \cline{1-2} \cline{4-5} 
 		4                                                  & Run3           &                    & $\varphi^{\prime}(step3)\wedge (w_{2}\vee w_{4})$ & $\{C_{2}, C_{4}\}$     \\ \hline
 	\end{tabular}
 \end{table}
-\subsection{Compuitng MUSes}
-Once the entire collection of MCSes has been computed, the second phase produces all MUSes of the given instances and this phase is independent of first phase as it does not depend on the semantics of the input of Algorithm $1$. The second phase can be applied to any minimal hitting set. Authors presented a recursive algorithm which takes two inputs, one is set of MCSes and another the MUS currently being constructed in each branch of the recursion. The outputs are all MUSes.\newline
 \begin{Algorithm}
-\caption{Algorithm for computing the complete set of MUSes from a set of MCSes}
-\label{alg:allmuses}
+	\caption{Algorithm for computing the complete set of MUSes from a set of MCSes}
+	\label{alg:allmuses}
 	\begin{algorithm}{\text{AllMUSes}}{\text{MCSes, currentMUS}}
 		\begin{IF}{\text{MCSes = $\emptyset$}}
 			\text{print(currentMUS)} \\
@@ -81,8 +77,11 @@ Once the entire collection of MCSes has been computed, the second phase produces
 		\RETURN
 	\end{algorithm}
 \end{Algorithm}
-Algorithm $2$ is the recursive algorithm where the inputs are $\textbf{\textit{MCSes}}$ and $\textbf{\textit{currentMUS}}$. The goal of this is to find a irreducible set of clauses that hits each set of $\textbf{\textit{MCSes}}$. The terminating condition of the recursion is on Line $1$ that is if $\textbf{\textit{MCSes}}$ is empty. If it is,prints the MUS generated in current recursion branch and returns to look for other MUSes in another branches on Line $2$ and in Line $3$,respectively. Lines $5-12$ is iterated through all possible choices of clause selected on Line $5$ and recorded in a variable, $\textbf{\textit{selClause}}$. In Line $6$, $\textbf{\textit{selClause}}$ is stored in a growing MUS, $\textbf{\textit{newMUS}}$. For all possible choices of MCSes (selected on line $7$) recorded in $\textbf{\textit{selMCS}}$ such that $\textbf{\textit{selClause}}$ consists in $\textbf{\textit{selMCS}}$, iteration occurs from Lines $7-11$. Then, $\textbf{\textit{MCSes}}$ is recorded in a variable, $\textbf{\textit{newMCSes}}$.\newline
-For every $\textbf{\textit{selMCS}}$ a method, $\textbf{PropagateChoice}$ (Algorithm $3$) is called with $\textbf{\textit{newMCSes}}$, $\textbf{\textit{selClause}}$ and $\textbf{\textit{selMCS}}$.
+\subsection{Computing MUSes}
+Once the entire collection of MCSs has been computed, the second phase produces all MUSs of the given instances and this phase is independent of first phase as it does not depend on the semantics of the input of Algorithm $1$. The second phase can be applied to any minimal hitting set. The authors presented a recursive algorithm which takes two inputs, one is the set of all MCSs and another is the MUS currently being constructed in each branch of the recursion. The outputs are the set of all MUSs.\newline
+Algorithm $2$ is the recursive algorithm which takes $\mathbf{MCSs}$ and $\mathbf{currentMUS}$ as inputs. The terminating condition of the recursion is if $\mathbf{MCSs}$ is empty. If it is, prints the MUS generated in the current recursion branch and returns to look for other MUSs in another branches. The outer for loop (Lines $5-12$) is iterated through all possible choices of clause selected from $\mathbf{MCSs}$ and recorded in a variable $\mathbf{selClause}$. Then this selected clause is stored in a growing MUS $\mathbf{newMUS}$. The outer for loop (Lines $7-11$) is iterated for all possible choices of MCSs recorded in $\mathbf{selMCS}$ such that it contains $\mathbf{selClause}$. $\mathbf{MCSs}$ is copied in $\mathbf{newMCSs}$.\newline
+For every $\mathbf{selMCS}$ a method, $\mathbf{PropagateChoice}$ (Algorithm $3$) is called with $\mathbf{newMCSs}$, $\mathbf{\textit{selClause}}$ and $\mathbf{\textit{selMCS}}$.
+
 \begin{figure}[htb] % where to insert the figure: h=here, t=top, b=bottom,
 	% the order htb shows which position is preffered
 	\begin{center}
@@ -111,8 +110,11 @@ For every $\textbf{\textit{selMCS}}$ a method, $\textbf{PropagateChoice}$ (Algor
 		MaintainNoSupersets(MCSes)
 	\end{algorithm}
 \end{Algorithm}
-Algorithm $3$ has the goal to alter a copy of the current MCSes $(\textbf{\textit{newMCSes}})$. It alters by removing an MCS from $\textbf{\textit{MCSes}}$ hitted by $\textbf{\textit{thisClause}}$. In the last line, $\textbf{MaintainNoSupersets}$ is invoked which removes any MCS from $\textbf{\textit{MCSes}}$ which is a superset of others. This is needed as we are dealing with the minimal set of MCSes and no MCS cannot be a superset of others. For example, let we have $MCSes=\{\{C_{2}\}\{C_{1}, C_{3}\}\{C_{2},C_{4}\}\}$. Here, $\{C_{2},C_{4}\}$ is a superset of $\{C_{2}\}$. If we pass this MCSes through $\textbf{MaintainNoSupersets}$, $\{C_{2},C_{4}\}$ will be removed.\newline
-The recursion of Algorithm $2$ continues by calling $\textbf{AllMUSes}$ with $\textbf{\textit{newMCSes}}$ and $\textbf{\textit{newMUS}}$.
+The goal of this algorithm is to alter the copy of the current MCSs $(\mathbf{newMCSs})$. It alters by removing an MCS from the copy hitted by $\mathbf{thisClause}$. At the end $\mathbf{MaintainNoSupersets}$ is invoked which removes an MCS from $mathbf{MCSes}$ which is a superset of others. This is needed as we are dealing with the $\emph{minimal}$ set of MCSs and no MCS cannot be a superset of others. For example, let we have $MCSs=\{\{C_{2}\}\{C_{1}, C_{3}\}\{C_{2},C_{4}\}\}$. Here, $\{C_{2},C_{4}\}$ is a superset of $\{C_{2}\}$. If we pass this MCSs through $\mathbf{MaintainNoSupersets}$, $\{C_{2},C_{4}\}$ will be removed.\newline
+The recursion of Algorithm $2$ continues by calling $\mathbf{AllMUSs}$ with $\mathbf{newMCSs}$ and $\mathbf{newMUS}$.
 \begin{example}
-Let us consider, our example formula $\varphi$. We already have found $MCSes(\varphi)=\{\{C_{1}\}, \{C_{2}, C_{3}\}, \{C_{2}, C_{4}\}\}$. Let, $C_{1}$ is chosen as $\textbf{\textit{selClause}}$ in the first iteration. So, $C_{1}$ is added in the growing MUS. Now, for each set of MCSes another iteration will occur which calls $\textbf{PropagateChoice}$ method by creating a modified copy of current MCSes and makes a recursive call to itself. Modified MCSes contain $\{C_{2}, C_{3}\}\{C_{2},C_{4}\}$. The recursive call continues until empty MCSes is not found. Empty MCSes is found by producing a MUS, $\{C_{2}, C_{3}\}$. Now, it will look for other MUSes in other branches. For our example the whole procedure to generate all MUSes is illustrated in the Figure 2. Finally, we get all MUSes, $\{C_{1}, C_{2}\}$ and $\{C_{1},C_{3}, C_{4}\}$.
+	Let us consider, our example formula $link korte hobe$. We have already found $MCSs(\varphi)=\{\{C_{1}\}, \{C_{2}, C_{3}\}, \{C_{2}, C_{4}\}\}$. Let, $C_{2}$ is chosen as $\mathbf{selClause}$ in the first iteration. So, $C_{2}$ is added in the growing MUS. Now, for each set of MCSs containing $C_{2}$ another iteration will occur which calls $\mathbf{PropagateChoice}$ to create a modified copy of current MCSs and makes a recursive call to itself. Modified MCSs contain $\{C_{1}\}$ which becomes current MCSs after the recursive call. The recursive call continues until empty MCSs is not found. For this branch empty MCSs is found by generating a MUS, $\{C_{1}, C_{2}\}$. Now, it will look for other MUSs in other branches.\newline
+	Again consider another iteration where $C_{3}$ is chosen as $\mathbf{selClause}$ and $\mathbf{newMUS}=\{C_{3}\}$. Inner for loop runs for only $\mathbf{selMCS}=\{C_{2}, C_{3}\}$ as $\mathbf{selClause}\in \mathbf{selMCS}$ and creates a modified copy of current MCSs by calling $\mathbf{PropagateChoice}$. Recursive call continues, because we have non-empty $MCSs=\{\{C_{1}\}, \{C_{2}, C_{4}\}\}$. For this branch an empty MCSes is found after generating another MUS $\{C_{1}, C_{3}, C_{4}\}$
+		If we search other branches for new MUSes, we would not find as $\{C_{1}, C_{2}\}$ and $\{C_{1}, C_{3}, C_{4}\}$ are only two MUSes. In other word these are two $\emph{minimal}$ sets of clauses that hits each set of MCSs.
+		Finally, we get all MUSs, $\{C_{1}, C_{2}\}$ and $\{C_{1},C_{3}, C_{4}\}$.
 \end{example}
