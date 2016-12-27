@@ -6,7 +6,7 @@
 \subsection{Propositional Logic Formula}
 Propositional logic formulas are Boolean combinations of atomic propositions i.e., each atomic proposition is a statement which is either $\emph{true}$ or $\mathbf{false}$. A well-formed propositional logic has following grammar:
 $$\varphi\hspace{3mm} :=\hspace{3mm} a\hspace{3mm} |\hspace{3mm} (\neg \varphi)\hspace{3mm} |\hspace{3mm} (\varphi \wedge \varphi)$$
-Here $a$ is a atomic proposition.\newline
+Here $a$ is an atomic proposition.\newline
 Syntactic sugar (a syntax which make propositional logic formulas easier to read or to express) for propositional logic formulas are given below:
 $$\perp\hspace{3mm}:=\hspace{3mm}(a\wedge\neg a)$$
 $$\top\hspace{3mm}:=\hspace{3mm}(a\wedge\neg a)$$
@@ -28,7 +28,7 @@ $$\neg\hspace{3mm} \wedge\hspace{3mm} \vee\hspace{3mm} \rightarrow\hspace{3mm} \
 \subsection{Conjunctive Normal Form}
 A propositional logic formula is said to be in Conjunctive Normal Form (CNF) if and only if it is a conjunction of clauses, where clause is a disjunction of literals. A literal could be a positive or negative instance of Boolean variable. A CNF formula $\varphi$ is defined as follows:
 $$\varphi = \bigwedge\limits_{i=1\ldots n} C_{i}$$
-$$ C_{i} = \bigvee\limits_{j=1\ldots m} a_{ij}$$
+$$ C_{i} = \bigvee\limits_{j=1\ldots m_{i}} a_{ij}$$
 Here, $C_{i}$ is the $i^{\text th}$ clause and $n$ is total the number of clauses in $\varphi$, $a_{ij}$ is a literal and $m$ is the total number of literals in $C_{i}$.\newline
 \begin{example}
 	\label{cnf}
@@ -76,11 +76,11 @@ An Unsatisfiable Subset (US) of $\varphi$ for an unsatisfiable CNF formula $\var
 	For a propositional logic formula $\varphi$ in CNF, a subset $M$ of $\varphi 's$ clauses is an MCS $\emph{for $\varphi$}$ if $\bigwedge \limits_{C \in M}C$ is satisfiable and for all $M^{\prime}\subset M, (\varphi slashDiteHobe \bigwedge \limits_{C\in M^{\prime}}C)$ is unsatisfiable.
 \end{definition}
 A formula can have multiple MUSs and MCSs. For any formula $\varphi$, the set of all MUSs and MCSs of $\varphi$ are denoted by MUSs($\varphi$) and MCSs($\varphi$), respectively.
-For our example formula from \ref{cnf}, the MUSes and MCSes are shown in the Table $2.1$.
+For our example formula from \ref{cnf}, the MUSs and MCSs are shown in the Table $2.1$.
 \begin{table}[]
 	\centering
-	\caption{All MUSes and MCSes}
-	\label{my-label}
+	\caption{All MUSs and MCSs}
+	\label{mus-mcs}
 	\begin{tabular}{|l|l|}
 		\hline
 		$MUSs(\varphi)$ & $\{C_{1},C_{2}\},\{C_{1},C_{3},C_{4}\}$ \\ \hline
@@ -106,12 +106,12 @@ There is a relationship between MUSs and MCSs which is the foundation of paper \
 	\begin{center}
 		\input{pictures/directedTree.tex}
 	\end{center}
-	\caption{Duality of MUSes and MCSes.}
+	\caption{Duality of MUSs and MCSs.}
 	\label{fig:graph}
 \end{figure}
 
 \begin{example}
-		To illustrate this duality we use our example formula: $$\varphi=\underbrace{(x)}\limits_{C_{1}}\wedge\underbrace{(\neg x)}\limits_{C_{2}}\wedge\underbrace{(\neg x\vee y)}\limits_{C_{3}}\wedge\underbrace{(\neg x \vee \neg y)}\limits_{C_{4}}$$. First, the set of MCSs of $\varphi$  $\{\{C_{1}\}, \{C_{2}, C_{3}\}, \{C_{2}, C_{4}\}\}$, whose minimal hitting sets are $\{\{C_{1}, C_{2}\}, \{C_{1}, C_{3,} C_{4}\}\}$ which is exactly the set of MUSs (given in Table $1$). Similarly, we can show that the set of MCSes is the set of minimal hitting sets of the set of MUSSs. So, every MCS has at least one clause from every MUS and vice-versa. The duality is illustrated in \ref{fig:graph}.
+		To illustrate this duality we use our example formula: $$\varphi=\underbrace{(x)}\limits_{C_{1}}\wedge\underbrace{(\neg x)}\limits_{C_{2}}\wedge\underbrace{(\neg x\vee y)}\limits_{C_{3}}\wedge\underbrace{(\neg x \vee \neg y)}\limits_{C_{4}}$$ First, the set of MCSs of $\varphi$  $\{\{C_{1}\}, \{C_{2}, C_{3}\}, \{C_{2}, C_{4}\}\}$, whose minimal hitting sets are $\{\{C_{1}, C_{2}\}, \{C_{1}, C_{3,} C_{4}\}\}$ which is exactly the set of MUSs (given in Table \ref{mus-mcs}). Similarly, we can show that the set of MCSs is the set of minimal hitting sets of the set of MUSSs. So, every MCS has at least one clause from every MUS and vice-versa. The duality is illustrated in Figure \ref{fig:graph}.
 	
 \end{example}
 \subsection{AtMost Constraints}
