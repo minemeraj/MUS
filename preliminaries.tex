@@ -4,7 +4,7 @@
 \section{Preliminaries}
 \label{sec:preliminaries}
 \subsection{Propositional Logic Formula}
-Propositional logic formulas are Boolean combinations of atomic propositions i.e., each atomic proposition is a statement which is either $\emph{true}$ or $\mathbf{false}$. A well-formed propositional logic has following grammar:
+Propositional logic formulas are Boolean combinations of atomic propositions i.e., each atomic proposition is a statement which is either $\mathbf{true}$ or $\mathbf{false}$. A well-formed propositional logic has following grammar:
 $$\varphi\hspace{3mm} :=\hspace{3mm} a\hspace{3mm} |\hspace{3mm} (\neg \varphi)\hspace{3mm} |\hspace{3mm} (\varphi \wedge \varphi)$$
 Here $a$ is an atomic proposition.\newline
 Syntactic sugar (a syntax which make propositional logic formulas easier to read or to express) for propositional logic formulas are given below:
@@ -36,9 +36,14 @@ Here, $C_{i}$ is the $i^{\text th}$ clause and $n$ is total the number of clause
 	$$\varphi=\underbrace{(x)}\limits_{C_{1}}\wedge\underbrace{(\neg x)}\limits_{C_2}\wedge\underbrace{(\neg x\vee y)}\limits_{C_{3}}\wedge\underbrace{(\neg x \vee \neg y)}\limits_{C_{4}}$$
 	where, $x, \neg x, y$ and $\neg y$ are the literals.
 \end{example}
-A propositional logic formula is said to be satisfiable if it is possible to find an assignment that makes the formula true, otherwise unsatisfiable.
+
+The aforementioned CNF formula which is unsatisfiable will be used as an example throughout this paper.
+\subsection{Satisfiability Checking}
+Satisfiability checking for propositional logic determines whether a given propositional logic formula is satisfiable. One of the most successful technologies for this test is SAT solving.\newline
+A SAT solver solves the above satisfiability checking problem by implementing a decision procedure. The Davis–Putnam–Logemann–Loveland (DPLL) algorithm is the basis for most modern SAT solvers. The input formula of it is expected to be in CNF. It's not possible to explain SAT solver shortly.\newline
+A propositional logic formula is said to be satisfiable if it is possible to find an assignment that makes the formula $\mathbf{true}$, otherwise unsatisfiable.
 \begin{example}
-	Assume two propositional formulas be defined as $\varphi_{1}=x\vee y$ and $\varphi_{2}=x\rightarrow y$, $\alpha : \{x, y\}\rightarrow \{0, 1\}$ be an assignment with $\alpha (x)=1$ and $\alpha (y)=0$. Considering Table \ref{truth-table} $(0=\mathbf{false}$ and $1=\emph{true})$:
+	Assume two propositional formulas be defined as $\varphi_{1}=x\vee y$ and $\varphi_{2}=x\rightarrow y$, $\alpha : \{x, y\}\rightarrow \{0, 1\}$ be an assignment with $\alpha (x)=1$ and $\alpha (y)=0$. Considering Table \ref{truth-table} $(0=\mathbf{false}$ and $1=\mathbf{true})$:
 	\begin{table}[]
 		\centering
 		\caption{Truth Table}
@@ -54,12 +59,8 @@ A propositional logic formula is said to be satisfiable if it is possible to fin
 	\end{table}
 	So, $\varphi_{1}$ is satisfiable for the assignment, whether $\varphi_{2}$ is unsatisfiable.
 \end{example}
-The aforementioned CNF formula which is unsatisfiable will be used as an example throughout this paper.
-\subsection{Satisfiability Checking}
-Satisfiability checking for propositional logic determines whether a given propositional logic formula is satisfiable. One of the most successful technologies for this test is SAT solving.\newline
-A SAT solver solves the above satisfiability checking problem by implementing a decision procedure. The Davis–Putnam–Logemann–Loveland (DPLL) algorithm is the basis for most modern SAT solvers. The input formula of it is expected to be in CNF. It's not possible to explain SAT solver shortly.
 \subsection{Clause-Selector Variables}
-The authors of the paper \cite{karem} have used clause-selector variable to augment a CNF formula. A clause-selector variable is a variable, $w_{i}$ which is negated to augment each clause $C_{i}$ of a CNF $\varphi$ such that $C^{\prime}_{i}=(\neg w_{i}\vee C_{i})$ are the clauses of the new formula $\varphi^{\prime}$. Notice that each $C^{\prime}_{i}$ is an implication, $C^{\prime}_{i}=(w_{i}\rightarrow C_{i})$. It means if $w_{i}$ is set to $true$, the original clause $C_{i}$ must be satisfied. Conversely, assigning $w_{i}$ to $\mathbf{false}$ means that $C_{i}$ does not need to satisfied for satisfying $C_{i}^{\prime}$, which corresponds to removing $C_{i}$ from $\varphi$. So, adding clause-selector variables provides the SAT solver the ability to enable and disable clauses as a part of its normal search.
+The authors of the paper \cite{karem} have used clause-selector variable to augment a CNF formula. A clause-selector variable is a variable, $w_{i}$ which is negated to augment each clause $C_{i}$ of a CNF $\varphi$ such that $C^{\prime}_{i}=(\neg w_{i}\vee C_{i})$ are the clauses of the new formula $\varphi^{\prime}$. Notice that each $C^{\prime}_{i}$ is an implication, $C^{\prime}_{i}=(w_{i}\rightarrow C_{i})$. It means if $w_{i}$ is set to $\mathbf{true}$, the original clause $C_{i}$ must be satisfied. Conversely, assigning $w_{i}$ to $\mathbf{false}$ means that $C_{i}$ does not need to satisfied for satisfying $C_{i}^{\prime}$, which corresponds to removing $C_{i}$ from $\varphi$. So, adding clause-selector variables provides the SAT solver the ability to enable and disable clauses as a part of its normal search.
 \begin{example}
 	For our example formula $\varphi=(x)\wedge(\neg x)\wedge(\neg x\vee y)\wedge(\neg x \vee \neg y)$, after adding clause-selector variables we get the following augmented formula $\varphi^{\prime}$, 
 	$$\varphi^{\prime}=(\neg w_{1}\vee x)\wedge(\neg w_{2}\vee \neg x)\wedge(\neg w_{3}\vee \neg x\vee y)\wedge(\neg w_{4}\vee \neg x \vee \neg y)$$
@@ -117,9 +118,9 @@ There is a relationship between MUSs and MCSs which is the foundation of paper \
 \subsection{AtMost Constraints}
  An AtMost Constraint states that the number of the literals from a given set does not exceed a given upper bound. For $\{l_{1}, l_{2}, l_{3},\cdots ,l_{\text n}\}$ being a set of $n$ literals and $k$ a non-negative integer, the corresponding AtMost constraint is defined as:
 $$AtMost(\{l_{1},l_{2},\ldots,l_{n}\},k)\equiv \sum\limits^{n}_{i=1} val(l_{i})\leqslant k$$
-where $val(l_{\text i})$ is 1 if $l_{i}$ is assigned $true$ and otherwise 0.The bound $k$ tells that at most how many literals can be assigned $]\emph{true}$.\newline
-the authors used an implementation of the AtMost constraints where the variables are watched and propagates the negation of each literal when $k$ of them are assigned $true$. This is implemented with exactly $n$ watched literals and a counter that is incremented or decremented whenever one of them is assigned or unassigned.
+where $val(l_{\text i})$ is 1 if $l_{i}$ is assigned $\mathbf{true}$ and otherwise 0.The bound $k$ tells that at most how many literals can be assigned $]\mathbf{true}$.\newline
+the authors used an implementation of the AtMost constraints where the variables are watched and propagates the negation of each literal when $k$ of them are assigned $\mathbf{true}$. This is implemented with exactly $n$ watched literals and a counter that is incremented or decremented whenever one of them is assigned or unassigned.
 \begin{example}
 Consider formula $\varphi = (l_{1}\vee l_{2}\vee l_{3})$ with the AtMost constraint $\varphi_{AM}=AtMost(\{l_{1}\vee l_{2}\vee l_{3}\}, 2)$. Solving the formula $\varphi
-\wedge \varphi_{AM}$ might assign true to $l_{1}$ and $l_{2}$, but $\varphi_{AM}$ will assure that $l_{3}$ will be assigned $\mathbf{false}$.
+\wedge \varphi_{AM}$ might assign $\mathbf{true}$ to $l_{1}$ and $l_{2}$, but $\varphi_{AM}$ will assure that $l_{3}$ will be assigned $\mathbf{false}$.
 \end{example}
