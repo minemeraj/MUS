@@ -54,3 +54,7 @@ Temporary Items
 *.aux
 *.log
 main.out
+*.nav
+*.snm
+presentation/MUS.tex
+*.toc

@@ -9,7 +9,7 @@ $$\varphi\hspace{3mm} :=\hspace{3mm} a\hspace{3mm} |\hspace{3mm} (\neg \varphi)\
 Here $a$ is an atomic proposition.\newline
 Syntactic sugar (a syntax which make propositional logic formulas easier to read or to express) for propositional logic formulas are given below:
 $$\perp\hspace{3mm}:=\hspace{3mm}(a\wedge\neg a)$$
-$$\top\hspace{3mm}:=\hspace{3mm}(a\wedge\neg a)$$
+$$\top\hspace{3mm}:=\hspace{3mm}(a\vee\neg a)$$
 $$(\varphi_{1}\vee\varphi_{2}) := \neg((\neg \varphi_{1}) \wedge (\neg \varphi_{2})) $$
 $$(\varphi_{1}\rightarrow\varphi_{2}) := ((\neg \varphi_{1}) \vee \varphi_{2}) $$
 $$(\varphi_{1}\leftrightarrow\varphi_{2}) := ( (\varphi_{1}\rightarrow\varphi_{2}) \wedge (\varphi_{2}\rightarrow\varphi_{1}))$$
@@ -94,16 +94,15 @@ Assume, $\Omega \subseteq 2^{D}$ is a collection (set) of sets of a finite set $
 Given a finite set $D$ and a $\Omega \subseteq 2^{D}$, a hitting set (HS) $H$ of $\Omega$ is $H\subseteq D$ such that $\forall S\in \Omega$ $H\cap S\neq \emptyset$. A HS $H$ of $\Omega$ is $\emph{minimal}$ if fro all $H^{\prime}\subset H$ it holds that $H^{\prime}$ is not an HS.
 \end{definition}
 \begin{example}
-Let us consider $D=\{a, b,c,d\}$ and $\Omega=\{\{a, b\}, \{b, c, d\}\}$. Then $\{a,b\}, \{b,c,d\}, \{a,c,d\}, \{b\},\cdots$ are hitting sets of $\omega$ where $\{b\}, \{a,c\} $ and $ \{a,d\}$ are the minimal hitting sets.	
+Let us consider $D=\{a, b,c,d\}$ and $\Omega=\{\{a, b\}, \{b, c, d\}\}$. Then $\{a,b\}, \{b,c,d\}, \{a,c,d\}, \{b\},\cdots$ are hitting sets of $\Omega$ where $\{b\}, \{a,c\} $ and $ \{a,d\}$ are the minimal hitting sets.	
 \end{example}
 \subsection{MUS $\backslash$ MCS Duality}
-There is a relationship between MUSs and MCSs which is the foundation of paper \cite{karem}. The relationship states that the set of MUSs of formula $\varphi$ is equal to the set of minimal hitting sets of the set of MCSs and vice-versa. This is the duality of MUS and MCS. Formally, it can said that:
+There is a relationship between MUSs and MCSs which is the foundation of paper \cite{karem}. The relationship states that the set of MUSs of a formula $\varphi$ is equal to the set of minimal hitting sets of the set of MCSs and vice-versa. This is the duality of MUS and MCS. Formally, it can said that:
 \begin{enumerate}
 	\item A subset $U$ of $\varphi 's$ clause is an MUS if and only if $U$ is a minimal hitting set of MCSs$(\varphi)$.
 	\item A subset $M$ of $\varphi 's$ clause is an MCS if and only if $M$ is an minimal hitting set of MUSs$(\varphi)$.
 \end{enumerate}
-\begin{figure}[htb] % where to insert the figure: h=here, t=top, b=bottom,
-	% the order htb shows which position is preffered
+\begin{figure}[htb]
 	\begin{center}
 		\input{pictures/directedTree.tex}
 	\end{center}

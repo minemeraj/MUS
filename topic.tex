@@ -8,7 +8,7 @@ The approach of computing all MUSs of $\varphi$ is to first find all MCSs($\varp
 		\varphi^{\prime} \= \text{extend $\varphi$ with clause-selector variables $w_{1},\ldots ,w_{n}$}  \\
 		MCSs\=\emptyset \\
 		k\=1 \\
-		\begin{WHILE}{\text{SAT($\varphi$)}}
+		\begin{WHILE}{\text{SAT($\varphi^{\prime}$)}}
 			\varphi^{\prime}_{k} \= \varphi^{\prime} \wedge AtMost(\{\neg w_{1}, \neg w_{2},\ldots, \neg w_{n}\},k) \\
 			\begin{WHILE}{newMCS \= IncrementalSAT(\varphi^{\prime}_{k})}
 				MCSs \= MCSs \cup {newMCS} \\
@@ -29,12 +29,12 @@ All founded MCSs are $\emph{minimal}$ as the MCSs were found in increasing size 
 The outer while loop checks if $\varphi^{\prime}$ is still satisfiable without any bound on $w_{\text i}$. Note that, $\varphi^{\prime}$ is augmented with all  generated blocking clauses. Finding no satisfying assignments indicates that we have found all MCSs and there is no other way to remove clauses for satisfying formula. Finally, the algorithm terminates and returns all MCSs to caller.
 \begin{example}
 Let us consider our example formula $\varphi=(x)\wedge(\neg x)\wedge(\neg x\vee y)\wedge(\neg x \vee \neg y)$. So, $\varphi^{\prime}=(\neg w_{1}\vee x)\wedge(\neg w_{2}\vee \neg x)\wedge(\neg w_{3}\vee \neg x\vee y)\wedge(\neg w_{4}\vee \neg x \vee \neg y)$. Initially, $MCSs=\emptyset$ and $k=1$.\newline
-In the first iteration, it will add an AtMost bound with $k=1$ by creating $\varphi^{\prime}_{1}=\varphi^{\prime} \wedge AtMost(\{l_{1},l_{2},l_{3},l_{4}\},1)$. At first $\mathbf{false}$ is assigned to $w_{1}$ and the incremental solver finds a solution for $\varphi^{\prime}_{k}$. Now, we get the followings:
+In the first iteration, it will add an AtMost bound with $k=1$ by creating $\varphi^{\prime}_{1}=\varphi^{\prime} \wedge AtMost(\{w_{1},w_{2},w_{3},w_{4}\},1)$. At first $\mathbf{false}$ is assigned to $w_{1}$ and the incremental solver finds a solution for $\varphi^{\prime}_{1}$. Now, we get the followings:
 $$MCSs=\{C_{1}\}$$
 $$\varphi^{\prime}_{1}=\varphi^{\prime}_{1} \wedge w_{1}$$
 $$\varphi^{\prime}=\varphi^{\prime} \wedge w_{1}$$
 After adding the blocking clause, $(w_{1})$ the incremental solver will be unable to find any further solution with $k=1$. There is no other way to remove one clause to satisfy $\varphi$. It means no other single clause covers all of its MUSs. The inner while loop is exited.\newline
-As $\varphi^{\prime}$ is still satisfiable, the bound is incremented to 2 and the search for soluitons of $\varphi^{\prime}_{2}=\varphi^{\prime} \wedge AtMost(\{l_{1},l_{2},l_{3},l_{4}\},2)$ is continued.For $k=2$, we get the followings, respectively:
+As $\varphi^{\prime}$ is still satisfiable, the bound is incremented to 2 and the search for soluitons of $\varphi^{\prime}_{2}=\varphi^{\prime} \wedge AtMost(\{w_{1},w_{2},w_{3},w_{4}\},2)$ is continued.For $k=2$, we get the followings, respectively:
 \begin{itemize}
 	\item $w_{2}=false$ and $w_{3}=false,$
 	$$MCSs=\{\{C_{1}\}, \{C_{2}, C_{3}\}\}$$
@@ -54,7 +54,7 @@ We will not get any other MCSs for $K=2$. Also, the outer while loop will exit a
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
 		\begin{tabular}[c]{@{}l@{}}Step\\ No.\end{tabular} &                & $k$                  & $\varphi^{\prime}$ & MCSs \\ \hline
-		1                                                  & Initialization & \multirow{2}{*}{1} & $(x)\wedge (\neq x)\wedge (\neq x \vee y)\wedge (\neq x \vee \neq y) $ & $\emptyset$     \\ \cline{1-2} \cline{4-5} 
+		1                                                  & Initialization & \multirow{2}{*}{1} & $(x)\wedge (\neg x)\wedge (\neg x \vee y)\wedge (\neg x \vee \neg y) $ & $\emptyset$     \\ \cline{1-2} \cline{4-5} 
 		2                                                  & Run1           &                    & $\varphi^{\prime}(step1)\wedge w_{1}$ & $\{C_{1}\}$     \\ \hline
 		3                                                  & Run2           & \multirow{2}{*}{2} & $\varphi^{\prime}(step2)\wedge (w_{2}\vee w_{3})$ & $\{C_{2}, C_{3}\}$     \\ \cline{1-2} \cline{4-5} 
 		4                                                  & Run3           &                    & $\varphi^{\prime}(step3)\wedge (w_{2}\vee w_{4})$ & $\{C_{2}, C_{4}\}$     \\ \hline
@@ -75,7 +75,7 @@ We will not get any other MCSs for $K=2$. Also, the outer while loop will exit a
 				PropagateChoise(newMCSs, selectClause, selectMCS) \\
 				AllMUSs(newMCSs, newMUS) \\
 			\end{FOR}
-		\end{FOR}
+		\end{FOR} \\
 		\RETURN
 	\end{algorithm}
 \end{Algorithm}
@@ -89,9 +89,14 @@ For every $\mathbf{selectMCS}$ a method, $\mathbf{PropagateChoice}$ (Algorithm \
 	\begin{center}
 		\input{pictures/overviewofalgoallmuses.tex}
 	\end{center}
-	\caption{Illustration of all MUSs}
+	\caption{Illustration of the computation of all MUSs}
 	\label{fig:graphallmuses}
 \end{figure}
+
+The goal of this algorithm is to alter the copy of the current MCSs $(\mathbf{newMCSs})$. It alters by removing an MCS from the copy hitted by $\mathbf{thisClause}$. At the end $\mathbf{MaintainNoSupersets}$ is invoked which removes an MCS from $mathbf{MCSs}$ which is a superset of others. This is needed as we are dealing with the $\emph{minimal}$ set of MCSs and no MCS cannot be a superset of others. For example, let we have $MCSs=\{\{C_{2}\}\{C_{1}, C_{3}\}\{C_{2},C_{4}\}\}$. Here, $\{C_{2},C_{4}\}$ is a superset of $\{C_{2}\}$. If we pass this MCSs through $\mathbf{MaintainNoSupersets}$, $\{C_{2},C_{4}\}$ will be removed.\newline
+The recursion of Algorithm \ref{alg:allmuses} continues by calling $\mathbf{AllMUSs}$ with $\mathbf{newMCSs}$ and $\mathbf{newMUS}$.
+\begin{example}
+	Let us consider, our example formula $link korte hobe$. We have already found $MCSs(\varphi)=\{\{C_{1}\}, \{C_{2}, C_{3}\}, \{C_{2}, C_{4}\}\}$. Let, $C_{2}$ is chosen as $\mathbf{selectClause}$ in the first iteration. So, $C_{2}$ is added in the growing MUS. Now, for each set of MCSs containing $C_{2}$ another iteration will occur which calls $\mathbf{PropagateChoice}$ to create a modified copy of current MCSs and makes a recursive call to itself. Modified MCSs contain $\{C_{1}\}$ which becomes current MCSs after the recursive call. The recursive call continues until empty MCSs is not found. For this branch empty MCSs is found by generating a MUS, $\{C_{1}, C_{2}\}$. Now, it will look for other MUSs in other branches.\newline
 \begin{Algorithm}
 	\caption{Algorithm for altering MCSs to make the choice of thisClause irredundant as the only element hitting thisMCS}
 	\label{alg:propagatechoise}
@@ -102,20 +107,16 @@ For every $\mathbf{selectMCS}$ a method, $\mathbf{PropagateChoice}$ (Algorithm \
 					testMCS \= testMCS - \{clause\} \\
 				\end{IF}
 			\end{FOR}
-		\end{FOR}
+		\end{FOR} \\
 		\begin{FOR}{\textbf{each} \text{testMCS $\in$ MCSs}}
 			\begin{IF}{\text{thisClause $\in$ testMCS}}
 				testMCS \= testMCS - \{clause\} \\
 				MCSs \= MCSs - \{testMCS\} \\
 			\end{IF}
-		\end{FOR}
+		\end{FOR}\\
 		MaintainNoSupersets(MCSs)
 	\end{algorithm}
 \end{Algorithm}
-The goal of this algorithm is to alter the copy of the current MCSs $(\mathbf{newMCSs})$. It alters by removing an MCS from the copy hitted by $\mathbf{thisClause}$. At the end $\mathbf{MaintainNoSupersets}$ is invoked which removes an MCS from $mathbf{MCSs}$ which is a superset of others. This is needed as we are dealing with the $\emph{minimal}$ set of MCSs and no MCS cannot be a superset of others. For example, let we have $MCSs=\{\{C_{2}\}\{C_{1}, C_{3}\}\{C_{2},C_{4}\}\}$. Here, $\{C_{2},C_{4}\}$ is a superset of $\{C_{2}\}$. If we pass this MCSs through $\mathbf{MaintainNoSupersets}$, $\{C_{2},C_{4}\}$ will be removed.\newline
-The recursion of Algorithm \ref{alg:allmuses} continues by calling $\mathbf{AllMUSs}$ with $\mathbf{newMCSs}$ and $\mathbf{newMUS}$.
-\begin{example}
-	Let us consider, our example formula $link korte hobe$. We have already found $MCSs(\varphi)=\{\{C_{1}\}, \{C_{2}, C_{3}\}, \{C_{2}, C_{4}\}\}$. Let, $C_{2}$ is chosen as $\mathbf{selectClause}$ in the first iteration. So, $C_{2}$ is added in the growing MUS. Now, for each set of MCSs containing $C_{2}$ another iteration will occur which calls $\mathbf{PropagateChoice}$ to create a modified copy of current MCSs and makes a recursive call to itself. Modified MCSs contain $\{C_{1}\}$ which becomes current MCSs after the recursive call. The recursive call continues until empty MCSs is not found. For this branch empty MCSs is found by generating a MUS, $\{C_{1}, C_{2}\}$. Now, it will look for other MUSs in other branches.\newline
 	Again consider another iteration where $C_{3}$ is chosen as $\mathbf{selectClause}$ and $\mathbf{newMUS}=\{C_{3}\}$. Inner for loop runs for only $\mathbf{selectMCS}=\{C_{2}, C_{3}\}$ as $\mathbf{selectClause}\in \mathbf{selectMCS}$ and creates a modified copy of current MCSs by calling $\mathbf{PropagateChoice}$. Recursive call continues, because we have non-empty $MCSs=\{\{C_{1}\}, \{C_{2}, C_{4}\}\}$. For this branch an empty MCSs is found after generating another MUS $\{C_{1}, C_{3}, C_{4}\}$
 		If we search other branches for new MUSs, we would not find as $\{C_{1}, C_{2}\}$ and $\{C_{1}, C_{3}, C_{4}\}$ are only two MUSs. In other word these are two $\emph{minimal}$ sets of clauses that hits each set of MCSs.
 		Finally, we get all MUSs, $\{C_{1}, C_{2}\}$ and $\{C_{1},C_{3}, C_{4}\}$.
